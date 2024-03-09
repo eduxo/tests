@@ -12,16 +12,16 @@ sudo pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64
     -cores 1 \
     -memory 512 \
     -swap 512 \
-    -password heslo \
+    -password \
     -rootfs volume=local-lvm:8 \
     -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,type=veth  &&\
 sudo pct start $ID &&\
 sleep 10 &&\
 
-sudo pct exec $ID -- apt update -y
-sudo pct exec $ID -- groupadd sysadmin
-sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo sysadmin &&\
-sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
+#sudo pct exec $ID -- apt update -y
+#sudo pct exec $ID -- groupadd sysadmin
+#sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo sysadmin &&\
+#sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
