@@ -9,12 +9,16 @@ sudo pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64
     -arch amd64 \
     -ostype debian \
     -hostname $HOSTNAME \
+    -features nesting=1 \
+    -unprivileged 1 \
+    -password \
+    -rootfs volume=local-lvm:8 \
     -cores 1 \
     -memory 512 \
     -swap 512 \
-    -password \
-    -rootfs volume=local-lvm:8 \
-    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,type=veth  &&\
+    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,firewall=1  \
+    -nameserver 1.1.1.1 &&\
+
 sudo pct start $ID &&\
 sleep 10 &&\
 
