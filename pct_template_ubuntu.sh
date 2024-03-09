@@ -62,7 +62,7 @@ sudo pct exec $ID -- usermod -aG users sysadmin
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
 # Edit /etc/hosts
-sudo sh -c 'echo "'$IPv4'        '$HOSTNAME'.eduxo.lab  '$HOSTNAME'
+sudo sh -c 'echo "'$IPv4' '$HOSTNAME'.eduxo.lab '$HOSTNAME'
 " >> /etc/hosts'
 
 echo -e '\n\e[0;92mContejner '$HOSTNAME' is ready.\e[0m

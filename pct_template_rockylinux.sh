@@ -18,7 +18,7 @@ check_internet
 # Container Settings
 ID="103"
 HOSTNAME="rockylinux"
-IPv4="10.20.30.103/24"
+IPv4="10.20.30.103"
 TEMPLATE="rockylinux-9-default_20221109_amd64.tar.xz"
 
 # Create Container
@@ -33,7 +33,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     -cores 1 \
     -memory 512 \
     -swap 512 \
-    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,firewall=1 \
+    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4/24,firewall=1 \
     -nameserver 1.1.1.1 &&\
 #   -ssh-public-keys <filepath> \
 #             Setup public SSH keys (one key per line, OpenSSH format).
@@ -61,7 +61,7 @@ sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
 # Edit /etc/hosts
-sudo sh -c 'echo "'$IPv4'        '$HOSTNAME'.eduxo.lab  '$HOSTNAME'
+sudo sh -c 'echo "'$IPv4' '$HOSTNAME'.eduxo.lab '$HOSTNAME'
 " >> /etc/hosts'
 
 echo -e '\n\e[0;92mContejner '$HOSTNAME' is ready.\e[0m

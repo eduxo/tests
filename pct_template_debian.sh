@@ -18,7 +18,7 @@ check_internet
 # Container Settings
 ID="101"
 HOSTNAME="debian"
-IPv4="10.20.30.101/24"
+IPv4="10.20.30.101"
 TEMPLATE="debian-12-standard_12.2-1_amd64.tar.zst"
 
 # Create Container
@@ -33,7 +33,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     -cores 1 \
     -memory 512 \
     -swap 512 \
-    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,firewall=1 \
+    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4/24,firewall=1 \
     -nameserver 1.1.1.1 &&\
 #   -ssh-public-keys <filepath> \
 #             Setup public SSH keys (one key per line, OpenSSH format).
@@ -62,7 +62,7 @@ sudo pct exec $ID -- usermod -aG users sysadmin
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
 # Edit /etc/hosts
-sudo sh -c 'echo "'$IPv4'        '$HOSTNAME'.eduxo.lab  '$HOSTNAME'
+sudo sh -c 'echo "'$IPv4' '$HOSTNAME'.eduxo.lab '$HOSTNAME'
 " >> /etc/hosts'
 
 echo -e '\n\e[0;92mContejner '$HOSTNAME' is ready.\e[0m
