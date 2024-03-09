@@ -12,8 +12,8 @@ pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64.tar.
     -cores 1 \
     -memory 512 \
     -swap 512 \
-    -storage local-lvm \
-    -rootfs volume=main:8 \
+#    -storage local-lvm \
+    -rootfs volume=local-lvm:8 \
 #    -password \
     -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,type=veth  &&\
 pct start $ID &&\
