@@ -16,7 +16,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64
     -cores 1 \
     -memory 512 \
     -swap 512 \
-    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,firewall=1  \
+    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,firewall=1 \
     -nameserver 1.1.1.1 &&\
 
 sudo pct start $ID &&\
