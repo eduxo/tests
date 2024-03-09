@@ -5,7 +5,7 @@ ID="101"
 HOSTNAME="101"
 IPv4="10.20.30.101/24"
 
-pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64.tar.zst \
+sudo pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64.tar.zst \
     -arch amd64 \
     -ostype debian \
     -hostname $HOSTNAME \
@@ -15,17 +15,13 @@ pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64.tar.
     -password heslo \
     -rootfs volume=local-lvm:8 \
     -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,type=veth  &&\
-pct start $ID &&\
+sudo pct start $ID &&\
 sleep 10 &&\
 
-pct exec $ID -- bash -c "apt update -y &&\
-    apt install -y openssh-server &&\
-    systemctl start sshd &&\
-    groupadd sysadmin &&\
-    useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin &&\
-    sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
-    useradd -mU hogeuser &&\
-    echo "password" | passwd --stdin hogeuser"
+sudo pct exec $ID -- apt update -y
+sudo pct exec $ID -- groupadd sysadmin
+sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo sysadmin &&\
+sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
