@@ -22,9 +22,9 @@ sudo pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64
 sudo pct start $ID &&\
 sleep 10 &&\
 
-#sudo pct exec $ID -- apt update -y
+sudo pct exec $ID -- apt update -y
 #sudo pct exec $ID -- groupadd sysadmin
-#sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo sysadmin &&\
+#sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo sysadmin
 #sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 
