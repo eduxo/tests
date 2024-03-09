@@ -82,8 +82,7 @@ sudo pct exec $ID -- sh -c 'echo "
 
 # Edit /etc/hosts
 # echo -e '\e[0;92mPro nastaveni domain-name je nutne opravneni:\e[0m'
-sudo sh -c 'echo "'$IPv4'        '$HOSTNAME'.eduxo.lab  '$HOSTNAME'
-" >> /etc/hosts'
+sudo sh -c 'echo "'$IPv4' '$HOSTNAME' '$HOSTNAME'.eduxo.lab" >> /etc/hosts'
 
 echo -e '\n\e[0;92mContejner '$HOSTNAME' is ready.\e[0m
 
