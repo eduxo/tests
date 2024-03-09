@@ -1,10 +1,12 @@
 #!/bin/bash
 # This script prepare container debian:12 for exercise
 
+# Container Settings
 ID="101"
 HOSTNAME="101"
 IPv4="10.20.30.101/24"
 
+# Create Container
 sudo pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64.tar.zst \
     -arch amd64 \
     -ostype debian \
@@ -18,22 +20,33 @@ sudo pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64
     -swap 512 \
     -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,firewall=1 \
     -nameserver 1.1.1.1 &&\
+#   -ssh-public-keys <filepath> \
+#             Setup public SSH keys (one key per line, OpenSSH format).
 
+# Start Container
 sudo pct start $ID &&\
 sleep 10 &&\
 
-sudo pct exec $ID -- apt update -y
-#sudo pct exec $ID -- groupadd sysadmin
-#sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo sysadmin
-#sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
+# Enable SSH Password Authentication
+sudo pct exec $ID -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sudo pct exec $ID -- systemctl restart sshd
+
+# Add user to container
+sudo pct exec $ID -- groupadd sysadmin
+sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo sysadmin
+sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
+sudo pct exec $ID -- apt update -y
+
+sudo pct exec $ID -- apt-get upgrade -y
+sudo pct exec $ID -- apt-get autoremove -y
+sudo pct reboot $ID
+
 # pct resize <id> rootfs <storage(ex: +4G)>
 # pct exec <id> -- mkdir -p /root/.ssh/
 # pct push <id> ~/.ssh/authorized_keys /root/.ssh/authorized_keys
-# -ssh-public-keys <filepath>
-#             Setup public SSH keys (one key per line, OpenSSH format).
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
