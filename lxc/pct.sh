@@ -42,6 +42,7 @@ sudo pct exec $ID -- apt install sudo -y
 sudo pct exec $ID -- groupadd sysadmin
 sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
 sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
+sudo pct exec $ID -- usermod -aG users sysadmin
 
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
