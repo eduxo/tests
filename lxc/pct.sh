@@ -7,7 +7,7 @@ pct create 101 /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64.tar.zs
     -swap 512 \
     -storage local-lvm \
     -password \
-    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=10.20.30.100,type=veth  &&\
+    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=10.20.30.100/24,type=veth  &&\
 pct start 101 &&\
 sleep 10 &&\
 #pct resize <id> rootfs <storage(ex: +4G)> &&\
