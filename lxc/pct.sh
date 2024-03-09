@@ -22,6 +22,8 @@ sudo pct create "$ID" /var/lib/vz/template/cache/debian-12-standard_12.2-1_amd64
     -nameserver 1.1.1.1 &&\
 #   -ssh-public-keys <filepath> \
 #             Setup public SSH keys (one key per line, OpenSSH format).
+#   -password \
+#             Sets root password inside container.
 
 # Start Container
 sudo pct start $ID &&\
@@ -39,11 +41,11 @@ sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
-sudo pct exec $ID -- apt update -y
+# sudo pct exec $ID -- apt update -y
 
-sudo pct exec $ID -- apt-get upgrade -y
-sudo pct exec $ID -- apt-get autoremove -y
-sudo pct reboot $ID
+# sudo pct exec $ID -- apt-get upgrade -y
+# sudo pct exec $ID -- apt-get autoremove -y
+# sudo pct reboot $ID
 
 # pct resize <id> rootfs <storage(ex: +4G)>
 # pct exec <id> -- mkdir -p /root/.ssh/
