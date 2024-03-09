@@ -1,5 +1,5 @@
 #!/bin/bash
 
-docker stop ubuntu
-docker container rm ubuntu
-docker image rm ubuntu:latest
+docker stop rh124
+docker container rm rh124
+docker image rm centos-rh124:latest
