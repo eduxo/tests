@@ -18,7 +18,7 @@ check_internet
 # Container Settings
 ID="102"
 HOSTNAME="ubuntu"
-IPv4="10.20.30.102/24"
+IPv4="10.20.30.102"
 TEMPLATE="ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
 
 # Create Container
@@ -33,7 +33,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     -cores 1 \
     -memory 512 \
     -swap 512 \
-    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4,firewall=1 \
+    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4/24,firewall=1 \
     -nameserver 1.1.1.1 &&\
 #   -ssh-public-keys <filepath> \
 #             Setup public SSH keys (one key per line, OpenSSH format).
