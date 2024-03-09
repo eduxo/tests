@@ -30,18 +30,23 @@ sudo pct start $ID &&\
 sleep 10 &&\
 
 # Enable SSH Password Authentication
-sudo pct exec $ID -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sudo pct exec $ID -- sed -i 's/#PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 sudo pct exec $ID -- systemctl restart sshd
+
+# Install sudo 
+sudo pct exec $ID -- apt update -y
+sudo pct exec $ID -- apt install sudo -y
 
 # Add user to container
 sudo pct exec $ID -- groupadd sysadmin
-sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo sysadmin
+sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
 sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
-# sudo pct exec $ID -- apt update -y
+sudo pct exec $ID -- apt update -y
+sudo pct exec $ID -- apt update -y
 
 # sudo pct exec $ID -- apt-get upgrade -y
 # sudo pct exec $ID -- apt-get autoremove -y
