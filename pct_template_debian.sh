@@ -28,7 +28,6 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     -ostype debian \
     -hostname $HOSTNAME \
     -features nesting=1 \
-    -unprivileged 1 \
     -rootfs volume=local-lvm:8 \
     -cores 1 \
     -memory 512 \
