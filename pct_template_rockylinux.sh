@@ -53,6 +53,7 @@ sudo pct exec $ID -- systemctl restart sshd
 sudo pct exec $ID -- useradd sysadmin
 sudo pct exec $ID -- usermod -a -G wheel sysadmin
 sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
+sudo pct exec $ID -- setcap cap_net_raw+p /bin/ping
 
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
