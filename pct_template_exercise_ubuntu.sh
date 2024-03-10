@@ -58,9 +58,7 @@ sudo pct exec $ID -- chown sysadmin:sysadmin /home/sysadmin/.ssh/authorized_keys
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
-# Install sudo 
 # sudo pct exec $ID -- apt update -y &&\
-
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
