@@ -46,8 +46,8 @@ sleep 10 &&\
 
 # Install sudo 
 #sudo pct exec $ID -- dnf update -y
-#sudo pct exec $ID -- dnf install openssh-server nano -y
-#sudo pct exec $ID -- systemctl restart sshd
+sudo pct exec $ID -- dnf install openssh-server nano -y
+sudo pct exec $ID -- systemctl restart sshd
 
 # Add user to container
 sudo pct exec $ID -- useradd sysadmin
