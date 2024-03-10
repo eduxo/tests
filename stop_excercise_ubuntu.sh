@@ -5,13 +5,6 @@
 # Container Settings
 ID="102"
 
-# Stop container
-echo -e '\n\e[0;92mStopping Container ...\e[0m'
-sudo pct shutdown $ID \
-#    --forceStop 0 \
-#    --timeout 60 &&\
-sleep 5 &&\
-
 # Destroy container
 echo -e '\e[0;92mDestroying Container ...\e[0m'
 sudo pct destroy $ID \
