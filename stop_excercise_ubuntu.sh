@@ -4,6 +4,8 @@
 
 # Container Settings
 ID="102"
+HOSTNAME="ubuntu"
+IPv4="10.20.30.102"
 
 # Destroy container
 echo -e '\e[0;92mDestroying Container ...\e[0m'
@@ -13,4 +15,5 @@ sudo pct destroy $ID \
     --force 1 &&\
 
 sleep 5 &&\
+sudo pct exec $ID --  sed -i 's/'$IPv4' '$HOSTNAME' '$HOSTNAME'.eduxo.lab//' /etc/hosts
 echo -e '\n\e[0;92mDONE\e[0m'
