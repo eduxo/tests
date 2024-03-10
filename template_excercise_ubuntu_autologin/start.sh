@@ -34,6 +34,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     -memory 512 \
     -swap 512 \
     -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4/24,firewall=1 \
+    -mp0: ~/$EXAM/files/,mp=/shared \
     -nameserver 1.1.1.1 \
     -ssh-public-keys $HOME/.ssh/server_key.pub &&\
 
@@ -55,7 +56,7 @@ sudo pct exec $ID -- cp /root/.ssh/authorized_keys /home/sysadmin/.ssh/
 sudo pct exec $ID -- chown sysadmin:sysadmin /home/sysadmin/.ssh/authorized_keys
 
 # Import files - neovereno
-sudo pct push $ID ~/$EXAM/files/ /home/sysadmin/
+sudo pct push $ID ~/$EXAM/files/test.txt /home/sysadmin/ --user sysadmin
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
