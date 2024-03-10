@@ -59,8 +59,8 @@ sudo pct exec $ID -- cp /root/.ssh/authorized_keys /home/sysadmin/.ssh/
 sudo pct exec $ID -- chown sysadmin:sysadmin /home/sysadmin/.ssh/authorized_keys
 
 # Import files - neovereno
-sudo pct set $ID -mp0 ~/$REPO/$EXAM/files/,mp=/shared
-sudo pct push $ID ~/$REPO/$EXAM/files/* /home/sysadmin/ --user sysadmin
+sudo pct set $ID -mp0 ~/$REPO/$EXAM/files/,mp=/home/sysadmin/shared
+sudo pct push $ID ~/$REPO/$EXAM/files/test.txt /home/sysadmin/ --user sysadmin
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
