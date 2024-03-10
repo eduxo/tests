@@ -45,7 +45,7 @@ sleep 10 &&\
 
 # Install sudo 
 sudo pct exec $ID -- apt update -y
-sudo pct exec $ID -- apt install sudo -y
+# sudo pct exec $ID -- apt install sudo -y
 
 # Add user to container
 sudo pct exec $ID -- groupadd sysadmin
@@ -53,6 +53,7 @@ sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G s
 sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 sudo pct exec $ID -- usermod -aG users sysadmin
 sudo pct exec $ID -- setcap cap_net_raw+p /bin/ping
+sudo pct push $ID -- cp /root/.ssh/authorized_keys /home/sysadmin/.ssh/authorized_keys
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
@@ -63,4 +64,4 @@ sudo pct exec $ID -- setcap cap_net_raw+p /bin/ping
 # Edit /etc/hosts
 sudo sh -c 'echo "'$IPv4' '$HOSTNAME' '$HOSTNAME'.eduxo.lab" >> /etc/hosts'
 
-ssh sysadmin@$HOSTNAME.eduxo.lab -y
+ssh -A sysadmin@$HOSTNAME.eduxo.lab
