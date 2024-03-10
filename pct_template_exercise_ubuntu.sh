@@ -43,22 +43,23 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
 sudo pct start $ID &&\
 sleep 10 &&\
 
-# Install sudo 
-sudo pct exec $ID -- apt update -y &&\
-
 # Add user to container
 sudo pct exec $ID -- groupadd sysadmin
 sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
 sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 sudo pct exec $ID -- usermod -aG users sysadmin
+# Enable "ping" for unpriviledge user
 sudo pct exec $ID -- setcap cap_net_raw+p /bin/ping
+# SSH Authorized Key
 sudo pct exec $ID -- mkdir /home/sysadmin/.ssh/
 sudo pct exec $ID -- chown sysadmin:sysadmin /home/sysadmin/.ssh/ 
 sudo pct exec $ID -- cp /root/.ssh/authorized_keys /home/sysadmin/.ssh/
-sudo pct exec $ID -- chown chown sysadmin:sysadmin /home/sysadmin/.ssh/authorized_keys
+sudo pct exec $ID -- chown sysadmin:sysadmin /home/sysadmin/.ssh/authorized_keys
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
+# Install sudo 
+# sudo pct exec $ID -- apt update -y &&\
 
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
