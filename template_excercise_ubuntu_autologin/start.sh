@@ -15,6 +15,9 @@ function check_internet() {
 
 check_internet
 
+# EXAM NAME
+EXAM="template_excercise_ubuntu_autologin"
+
 # Container Settings
 ID="102"
 HOSTNAME="ubuntu"
