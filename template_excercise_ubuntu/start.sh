@@ -16,6 +16,7 @@ function check_internet() {
 check_internet
 
 # EXAM NAME
+REPO="tests"
 EXAM="template"
 
 # ------------------------------------ SERVER A -------------------------------------------
@@ -106,7 +107,7 @@ sudo pct exec $ID -- usermod -aG users sysadmin
 sudo pct exec $ID -- setcap cap_net_raw+p /bin/ping
 
 # Import files - neovereno
-sudo pct push $ID ~/$EXAM/servera_files/ /home/sysadmin/
+sudo pct push $ID ~/$REPO/$EXAM/servera_files/ /home/sysadmin/
 
 # --------------------------------SETTINGS FOR SERVER B---------------------------------------
 

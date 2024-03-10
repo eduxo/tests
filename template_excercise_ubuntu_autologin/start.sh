@@ -16,6 +16,7 @@ function check_internet() {
 check_internet
 
 # EXAM NAME
+REPO="tests"
 EXAM="template_excercise_ubuntu_autologin"
 
 # Container Settings
@@ -58,8 +59,8 @@ sudo pct exec $ID -- cp /root/.ssh/authorized_keys /home/sysadmin/.ssh/
 sudo pct exec $ID -- chown sysadmin:sysadmin /home/sysadmin/.ssh/authorized_keys
 
 # Import files - neovereno
-sudo pct set $ID -mp0 ~/$EXAM/files/,mp=/shared
-sudo pct push $ID ~/$EXAM/files/test.txt /home/sysadmin/ --user sysadmin
+sudo pct set $ID -mp0 ~/$REPO/$EXAM/files/,mp=/shared
+sudo pct push $ID ~/$REPO/$EXAM/files/* /home/sysadmin/ --user sysadmin
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
