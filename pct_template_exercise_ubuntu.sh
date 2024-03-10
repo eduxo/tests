@@ -52,8 +52,10 @@ sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G s
 sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 sudo pct exec $ID -- usermod -aG users sysadmin
 sudo pct exec $ID -- setcap cap_net_raw+p /bin/ping
-sudo pct push $ID -- mkdir /home/sysadmin/.ssh/
-sudo pct push $ID -- cp /root/.ssh/authorized_keys /home/sysadmin/.ssh/authorized_keys
+sudo pct exec $ID -- mkdir /home/sysadmin/.ssh/
+sudo pct exec $ID -- chown sysadmin:sysadmin /home/sysadmin/.ssh/ 
+sudo pct exec $ID -- cp /root/.ssh/authorized_keys /home/sysadmin/.ssh/
+sudo pct exec $ID -- chown chown sysadmin:sysadmin /home/sysadmin/.ssh/authorized_keys
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
