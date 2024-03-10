@@ -17,5 +17,5 @@ sudo pct destroy $ID \
 sleep 2 &&\
 
 # Edit /etc/hosts
-sudo sed -i 's/'$IPv4' '$HOSTNAME' '$HOSTNAME'.eduxo.lab//' /etc/hosts
+sudo sed -i '/'$IPv4' '$HOSTNAME' '$HOSTNAME'.eduxo.lab/d' /etc/hosts
 echo -e '\n\e[0;92mDONE\e[0m'
