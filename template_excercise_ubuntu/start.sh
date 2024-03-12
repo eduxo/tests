@@ -29,7 +29,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     -ostype ubuntu \
     -hostname $HOSTNAME \
     -features nesting=1 \
-    -unprivileged 1 \
+    -unprivileged 0 \
     -rootfs volume=local-lvm:8 \
     -cores 1 \
     -memory 512 \
@@ -96,7 +96,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     -ostype ubuntu \
     -hostname $HOSTNAME \
     -features nesting=1 \
-    -unprivileged 1 \
+    -unprivileged 0 \
     -rootfs volume=local-lvm:8 \
     -cores 1 \
     -memory 512 \
