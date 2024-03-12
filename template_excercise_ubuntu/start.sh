@@ -59,6 +59,7 @@ EXAM="template_excercise_ubuntu"
 sudo pct shutdown $ID
 sudo pct set $ID -mp0 ~/$REPO/$EXAM/servera_files/,mp=/home/sysadmin/shared
 sudo pct start $ID
+sleep 10
 
 # Import One File
 sudo pct push $ID ~/$REPO/$EXAM/servera_files/file.txt /home/sysadmin/files \
@@ -126,6 +127,7 @@ EXAM="template_excercise_ubuntu"
 sudo pct shutdown $ID
 sudo pct set $ID -mp0 ~/$REPO/$EXAM/serverb_files/,mp=/home/sysadmin/shared
 sudo pct start $ID
+sleep 10
 
 # Import One File
 sudo pct push $ID ~/$REPO/$EXAM/serverb_files/file.txt /home/sysadmin/files \

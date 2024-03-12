@@ -65,6 +65,7 @@ EXAM="template_excercise_ubuntu_autologin"
 sudo pct shutdown $ID
 sudo pct set $ID -mp0 ~/$REPO/$EXAM/files/,mp=/home/sysadmin/shared
 sudo pct start $ID
+sleep 10
 
 # Import One File
 sudo pct push $ID ~/$REPO/$EXAM/files/file.txt /home/sysadmin/files \
