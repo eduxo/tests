@@ -15,10 +15,6 @@ function check_internet() {
 
 check_internet
 
-# EXAM NAME
-REPO="tests"
-EXAM="template_excercise_ubuntu_autologin"
-
 # Container Settings
 ID="102"
 HOSTNAME="ubuntu"
@@ -28,18 +24,18 @@ TEMPLATE="ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
 # Create Container
 echo -e '\e[0;92m\nDeploying container '$HOSTNAME' ...\e[0m'
 sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
-    -arch amd64 \
-    -ostype ubuntu \
-    -hostname $HOSTNAME \
-    -features nesting=1 \
-    -unprivileged 1 \
-    -rootfs volume=local-lvm:8 \
-    -cores 1 \
-    -memory 512 \
-    -swap 512 \
-    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4/24,firewall=1 \
-    -nameserver 1.1.1.1 \
-    -ssh-public-keys $HOME/.ssh/server_key.pub &&\
+    --arch amd64 \
+    --ostype ubuntu \
+    --hostname $HOSTNAME \
+    --features nesting=1 \
+    --unprivileged 0 \
+    --rootfs volume=local-lvm:8 \
+    --cores 1 \
+    --memory 512 \
+    --swap 512 \
+    --net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4/24,firewall=1 \
+    --nameserver 1.1.1.1 \
+    --ssh-public-keys $HOME/.ssh/server_key.pub &&\
 
 # Start Container
 sudo pct start $ID &&\
@@ -58,11 +54,23 @@ sudo pct exec $ID -- chown sysadmin:sysadmin /home/sysadmin/.ssh/
 sudo pct exec $ID -- cp /root/.ssh/authorized_keys /home/sysadmin/.ssh/
 sudo pct exec $ID -- chown sysadmin:sysadmin /home/sysadmin/.ssh/authorized_keys
 
-# Import files - neovereno
-sudo pct set $ID -mp0 ~/$REPO/$EXAM/files/,mp=/home/sysadmin/shared
-sudo pct push $ID ~/$REPO/$EXAM/files/test.txt /home/sysadmin/ --user sysadmin
-
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
+
+# EXAM NAME
+REPO="tests"
+EXAM="template_excercise_ubuntu_autologin"
+
+# Shared folder
+# Container must be priviledge => --unprivileged 0 \
+sudo pct shutdown $ID
+sudo pct set $ID -mp0 ~/$REPO/$EXAM/files/,mp=/home/sysadmin/shared
+sudo pct start $ID
+
+# Import One File
+sudo pct push $ID ~/$REPO/$EXAM/files/file.txt /home/sysadmin/files \
+    --user sysadmin \
+    --group sysadmin
+
 
 # sudo pct exec $ID -- apt update -y &&\
 
