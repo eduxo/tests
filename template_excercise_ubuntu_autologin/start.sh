@@ -81,4 +81,6 @@ sudo pct push $ID ~/$REPO/$EXAM/files/file.txt /home/sysadmin/files \
 # Edit /etc/hosts
 sudo sh -c 'echo "'$IPv4' '$HOSTNAME' '$HOSTNAME'.eduxo.lab" >> /etc/hosts'
 
+echo -e '\e[0;92m\nDONE\e[0m\n'
+
 ssh -o "StrictHostKeyChecking no" sysadmin@$HOSTNAME.eduxo.lab
