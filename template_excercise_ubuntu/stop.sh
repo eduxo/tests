@@ -9,7 +9,7 @@ HOSTNAME="serverA"
 IPv4="10.20.30.101"
 
 # Destroy Container Server A
-echo -e '\e[0;92mDestroying Container ...\e[0m'
+echo -e '\e[0;92m\nDestroying Container Server A...\e[0m\n'
 sudo pct destroy $ID \
     --purge 1 \
     --destroy-unreferenced-disks 1 \
@@ -28,7 +28,7 @@ HOSTNAME="serverB"
 IPv4="10.20.30.102"
 
 # Destroy Container Server B
-echo -e '\e[0;92mDestroying Container ...\e[0m'
+echo -e '\e[0;92m\nDestroying Container Server B...\e[0m\n'
 sudo pct destroy $ID \
     --purge 1 \
     --destroy-unreferenced-disks 1 \

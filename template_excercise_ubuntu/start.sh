@@ -23,7 +23,7 @@ IPv4="10.20.30.101"
 TEMPLATE="ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
 
 # Container Server A
-echo -e '\e[0;92m\nDeploying container '$HOSTNAME' ...\e[0m'
+echo -e '\e[0;92m\nDeploying container '$HOSTNAME' ...\e[0m\n'
 sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     -arch amd64 \
     -ostype ubuntu \
@@ -39,7 +39,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
 
 # Start Container
 sudo pct start $ID &&\
-echo "Wait about 30s for completion Server A!"
+echo -e '\e[0;92m\nWait about 30s for completion Server A!\e[0m\n'
 sleep 10 &&\
 
 # Add user to container
@@ -75,6 +75,8 @@ sudo pct push $ID ~/$REPO/$EXAM/servera_files/file.txt /home/sysadmin/files \
 # Edit /etc/hosts
 sudo sh -c 'echo "'$IPv4' '$HOSTNAME' '$HOSTNAME'.eduxo.lab" >> /etc/hosts'
 
+echo -e '\e[0;92mDONE\e[0m\n'
+
 echo -e '\n\e[0;92mContejner '$HOSTNAME' is ready.\e[0m
 Container-name: '$HOSTNAME'
 Domain-name: '$HOSTNAME'.eduxo.lab
@@ -92,7 +94,7 @@ IPv4="10.20.30.102"
 TEMPLATE="ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
 
 # Container Server B
-echo -e '\e[0;92m\nDeploying container '$HOSTNAME' ...\e[0m'
+echo -e '\e[0;92m\nDeploying container '$HOSTNAME' ...\e[0m\n'
 sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     -arch amd64 \
     -ostype ubuntu \
@@ -108,7 +110,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
 
 # Start Container
 sudo pct start $ID &&\
-echo "Wait about 30s for completion Server B!"
+echo -e '\e[0;92m\nWait about 30s for completion Server B!\e[0m\n'
 sleep 10 &&\
 
 # Add user to container
@@ -143,6 +145,8 @@ sudo pct push $ID ~/$REPO/$EXAM/serverb_files/file.txt /home/sysadmin/files \
 
 # Edit /etc/hosts
 sudo sh -c 'echo "'$IPv4' '$HOSTNAME' '$HOSTNAME'.eduxo.lab" >> /etc/hosts'
+
+echo -e '\e[0;92mDONE\e[0m\n'
 
 echo -e '\n\e[0;92mContejner '$HOSTNAME' is ready.\e[0m
 Container-name: '$HOSTNAME'
