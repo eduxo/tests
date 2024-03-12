@@ -22,7 +22,7 @@ IPv4="10.20.30.102"
 TEMPLATE="ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
 
 # Create Container
-echo -e '\e[0;92m\nDeploying container '$HOSTNAME' ...\e[0m'
+echo -e '\e[0;92m\nDeploying container '$HOSTNAME' ...\e[0m\n'
 sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     --arch amd64 \
     --ostype ubuntu \
@@ -39,7 +39,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
 
 # Start Container
 sudo pct start $ID &&\
-echo -e '\e[0;92m\nWait about 30s for completion!\e[0m'
+echo -e '\e[0;92m\nWait about 30s for completion!\e[0m\n'
 sleep 10 &&\
 
 # Add user to container

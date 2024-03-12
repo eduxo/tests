@@ -8,7 +8,7 @@ HOSTNAME="ubuntu"
 IPv4="10.20.30.102"
 
 # Destroy container
-echo -e '\e[0;92mDestroying Container ...\e[0m'
+echo -e '\e[0;92mDestroying Container ...\e[0m\n'
 sudo pct destroy $ID \
     --purge 1 \
     --destroy-unreferenced-disks 1 \
