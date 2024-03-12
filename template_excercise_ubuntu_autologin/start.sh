@@ -39,6 +39,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
 
 # Start Container
 sudo pct start $ID &&\
+echo "Wait about 30s for completion!"
 sleep 10 &&\
 
 # Add user to container

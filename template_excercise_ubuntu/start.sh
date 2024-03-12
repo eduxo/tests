@@ -39,6 +39,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
 
 # Start Container
 sudo pct start $ID &&\
+echo "Wait about 30s for completion Server A!"
 sleep 10 &&\
 
 # Add user to container
@@ -107,6 +108,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
 
 # Start Container
 sudo pct start $ID &&\
+echo "Wait about 30s for completion Server B!"
 sleep 10 &&\
 
 # Add user to container
