@@ -15,10 +15,6 @@ function check_internet() {
 
 check_internet
 
-# EXAM NAME
-REPO="tests"
-EXAM="template"
-
 # ------------------------------------ SERVER A -------------------------------------------
 # Container Server A Settings
 ID="101"
@@ -52,10 +48,23 @@ sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 sudo pct exec $ID -- usermod -aG users sysadmin
 sudo pct exec $ID -- setcap cap_net_raw+p /bin/ping
 
-# Import files - neovereno
-sudo pct push $ID ~/$REPO/$EXAM/servera_files/ /home/sysadmin/
-
 # --------------------------------SETTINGS FOR SERVER A---------------------------------------
+
+# EXAM NAME
+REPO="tests"
+EXAM="template_excercise_ubuntu"
+
+# Shared folder
+# Container must be priviledge => --unprivileged 0 \
+sudo pct shutdown $ID
+sudo pct set $ID -mp0 ~/$REPO/$EXAM/servera_files/,mp=/home/sysadmin/shared
+sudo pct start $ID
+
+# Import One File
+sudo pct push $ID ~/$REPO/$EXAM/servera_files/file.txt /home/sysadmin/files \
+    --user sysadmin \
+    --group sysadmin
+
 
 # sudo pct exec $ID -- apt update -y &&\
 
@@ -106,10 +115,23 @@ sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 sudo pct exec $ID -- usermod -aG users sysadmin
 sudo pct exec $ID -- setcap cap_net_raw+p /bin/ping
 
-# Import files - neovereno
-sudo pct push $ID ~/$REPO/$EXAM/servera_files/ /home/sysadmin/
-
 # --------------------------------SETTINGS FOR SERVER B---------------------------------------
+
+# EXAM NAME
+REPO="tests"
+EXAM="template_excercise_ubuntu"
+
+# Shared folder
+# Container must be priviledge => --unprivileged 0 \
+sudo pct shutdown $ID
+sudo pct set $ID -mp0 ~/$REPO/$EXAM/serverb_files/,mp=/home/sysadmin/shared
+sudo pct start $ID
+
+# Import One File
+sudo pct push $ID ~/$REPO/$EXAM/serverb_files/file.txt /home/sysadmin/files \
+    --user sysadmin \
+    --group sysadmin
+
 
 # sudo pct exec $ID -- apt update -y &&\
 
