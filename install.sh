@@ -1,7 +1,6 @@
 #!/bin/bash
 # This script prepare VM eduxo VPS-LabX
-# Tested on Proxmox VE
-
+# Tested on Proxmox VE 8.1-2
 
 # Test internet connection
 function check_internet() {
@@ -17,6 +16,7 @@ check_internet
 
 
 echo -e '\e[1;92m\nStart installation.\e[0m'
+sleep 2
 apt-get update -y
 apt-get dist-upgrade -y
 
@@ -52,13 +52,14 @@ clear
 
 # Install upgrades and basic programs
 echo -e '\e[0;92m\nInstalling basic programs, wait for completion.\e[0m'
-apt-get install gnome -y
+sleep 2
+apt-get install gnome-core -y
 apt-get install sudo -y
 usermod -aG sudo sysadmin
 
 # Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb)
 wget --no-check-certificate 'https://drive.google.com/uc?id=1vj_lEcH3KKmnsWsVCNaAa-0endJOr6Aq&confirm=no_antivirus&export=download' -O 'CiscoPacketTracer_821_Ubuntu_64bit.deb'
-echo "PacketTracer PacketTracer_821_amd64/accept-eula select true" |  debconf-set-selections
+echo "PacketTracer PacketTracer_820_amd64/accept-eula select true" |  debconf-set-selections
  DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_821_Ubuntu_64bit.deb
 rm CiscoPacketTracer_821_Ubuntu_64bit.deb
 
@@ -110,7 +111,7 @@ echo \
 apt-get update
      
 # Install Docker Engine
-apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
+apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose -y
      
 # Add your user to the docker group
 usermod -aG docker sysadmin
