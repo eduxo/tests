@@ -40,7 +40,7 @@ iface vmbr1 inet static
         post-up   echo 1 > /proc/sys/net/ipv4/ip_forward
         post-up   iptables -t nat -A POSTROUTING -s '10.20.30.0/24' -o vmbr0 -j MASQUERADE
         post-down iptables -t nat -D POSTROUTING -s '10.20.30.0/24' -o vmbr0 -j MASQUERADE
-" > /etc/hosts'
+" > /etc/network/interfaces'
 
 clear
 
@@ -58,9 +58,9 @@ apt-get install sudo -y
 usermod -aG sudo sysadmin
 
 # Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb)
-wget --no-check-certificate 'https://drive.google.com/uc?id=1vj_lEcH3KKmnsWsVCNaAa-0endJOr6Aq&confirm=no_antivirus&export=download' -O 'CiscoPacketTracer_821_Ubuntu_64bit.deb'
-echo "PacketTracer PacketTracer_820_amd64/accept-eula select true" |  debconf-set-selections
- DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_821_Ubuntu_64bit.deb
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1vj_lEcH3KKmnsWsVCNaAa-0endJOr6Aq' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1vj_lEcH3KKmnsWsVCNaAa-0endJOr6Aq" -O CiscoPacketTracer_821_Ubuntu_64bit.deb && rm -rf /tmp/cookies.txt
+echo "PacketTracer PacketTracer_821_amd64/accept-eula select true" |  debconf-set-selections
+DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_821_Ubuntu_64bit.deb
 rm CiscoPacketTracer_821_Ubuntu_64bit.deb
 
 # Install Wireshark
