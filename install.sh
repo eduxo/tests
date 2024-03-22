@@ -20,7 +20,7 @@ echo -e '\e[1;92m\nStart installation.\e[0m'
 apt-get update -y
 apt-get dist-upgrade -y
 
-sudo sh -c 'echo "iface eth0 inet manual
+sh -c 'echo "iface eth0 inet manual
 
 auto vmbr0
 iface vmbr0 inet dhcp
@@ -42,13 +42,13 @@ iface vmbr1 inet static
         post-down iptables -t nat -D POSTROUTING -s '10.20.30.0/24' -o vmbr0 -j MASQUERADE
 " > /etc/hosts'
 
-cls
+clear
 
 # New user sysadmin
 echo -e '\e[0;92m\nCreate new user: sysadmin\e[0m'
 adduser sysadmin
 
-cls
+clear
 
 # Install upgrades and basic programs
 echo -e '\e[0;92m\nInstalling basic programs, wait for completion.\e[0m'
@@ -58,18 +58,18 @@ usermod -aG sudo sysadmin
 
 # Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb)
 wget --no-check-certificate 'https://drive.google.com/uc?id=1vj_lEcH3KKmnsWsVCNaAa-0endJOr6Aq&confirm=no_antivirus&export=download' -O 'CiscoPacketTracer_821_Ubuntu_64bit.deb'
-echo "PacketTracer PacketTracer_821_amd64/accept-eula select true" | sudo debconf-set-selections
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_821_Ubuntu_64bit.deb
+echo "PacketTracer PacketTracer_821_amd64/accept-eula select true" |  debconf-set-selections
+ DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_821_Ubuntu_64bit.deb
 rm CiscoPacketTracer_821_Ubuntu_64bit.deb
 
 # Install Wireshark
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
-sudo apt-get install -y wireshark
-sudo adduser $USER wireshark
+apt-get install -y wireshark
+adduser sysadmin wireshark
 
 echo -e '\e[0;92m\nInstallation basic programs is completed.\e[0m'
 sleep 3
-cls
+clear
 
 
 # GIT clone
@@ -113,7 +113,7 @@ apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
      
 # Add your user to the docker group
-usermod -aG docker $USER
+usermod -aG docker sysadmin
      
 # Install Portainer
 docker pull portainer/portainer-ce:latest
@@ -126,7 +126,7 @@ docker run -d \
 
 echo -e '\e[0;92m\nInstallation Docker is completed.\e[0m'
 sleep 3
-cls
+clear
 
 # clean & restart
 echo -e '\e[0;92m\nCleaning ...\e[0m'
