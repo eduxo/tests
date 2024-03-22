@@ -59,7 +59,9 @@ usermod -aG sudo sysadmin
 
 # Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb)
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1vj_lEcH3KKmnsWsVCNaAa-0endJOr6Aq' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1vj_lEcH3KKmnsWsVCNaAa-0endJOr6Aq" -O CiscoPacketTracer_821_Ubuntu_64bit.deb && rm -rf /tmp/cookies.txt
+
 1wIY2XxRshMLwWlO_ki5WRUTC1wYRUl0z
+
 echo "PacketTracer PacketTracer_821_amd64/accept-eula select true" |  debconf-set-selections
 DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_821_Ubuntu_64bit.deb
 rm CiscoPacketTracer_821_Ubuntu_64bit.deb
