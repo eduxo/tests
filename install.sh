@@ -73,20 +73,20 @@ cls
 
 
 # GIT clone
-cd $HOME/ && git clone https://github.com/eduxo/eduxo.git
+#cd $HOME/ && git clone https://github.com/eduxo/eduxo.git
 
 # Update GIT eduxo on login
-sh -c 'echo "
+#sh -c 'echo "
 # eduxo
-cd $HOME/eduxo/ && git pull > /dev/null 2>&1
-" >> $HOME/.profile'
+#cd $HOME/eduxo/ && git pull > /dev/null 2>&1
+#" >> $HOME/.profile'
 
 # Update GIT eduxo on login via rdp
-sh -c 'echo "
+#sh -c 'echo "
 
 # eduxo
-cd $HOME/eduxo/ && git pull > /dev/null 2>&1
-" >> /etc/xrdp/startwm.sh'
+#cd $HOME/eduxo/ && git pull > /dev/null 2>&1
+#" >> /etc/xrdp/startwm.sh'
 
 
 # Install Docker (https://docs.docker.com/engine/install/debian/)
