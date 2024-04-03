@@ -42,6 +42,7 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
 
 # Start Container
 sudo pct start $ID &&\
+clear
 echo -e '\e[0;92m\nWait about 30s for completion!\e[0m\n'
 sleep 10 &&\
 
