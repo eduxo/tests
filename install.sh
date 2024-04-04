@@ -70,23 +70,23 @@ adduser sysadmin wireshark
 
 echo -e '\e[0;92m\nInstallation basic programs is completed.\e[0m'
 sleep 3
+
 clear
 
-
 # GIT clone
-#cd $HOME/ && git clone https://github.com/eduxo/eduxo.git
+#cd $HOME/ && git clone https://github.com/eduxo/VPS-LabX.git
 
-# Update GIT eduxo on login
+# Update GIT VPS-LabX on login
 #sh -c 'echo "
-# eduxo
-#cd $HOME/eduxo/ && git pull > /dev/null 2>&1
+# VPS-LabX
+#cd $HOME/VPS-LabX/ && git pull > /dev/null 2>&1
 #" >> $HOME/.profile'
 
-# Update GIT eduxo on login via rdp
+# Update GIT VPS-LabX on login via rdp
 #sh -c 'echo "
 
-# eduxo
-#cd $HOME/eduxo/ && git pull > /dev/null 2>&1
+# VPS-LabX
+#cd $HOME/VPS-LabX/ && git pull > /dev/null 2>&1
 #" >> /etc/xrdp/startwm.sh'
 
 
@@ -127,6 +127,7 @@ docker run -d \
 
 echo -e '\e[0;92m\nInstallation Docker is completed.\e[0m'
 sleep 3
+
 clear
 
 # clean & restart
@@ -145,6 +146,3 @@ reboot
 # ================
 # Set Background
 # Set Homepage (www.eduxo.cz)
-# Set GNS3
-# Menu Education (mozo)
-# Associate files for GNS3 portable projects
