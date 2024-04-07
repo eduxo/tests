@@ -21,11 +21,14 @@ sleep 2
 apt-get update -y
 apt-get dist-upgrade -y
 
-sh -c 'echo "iface ens32 inet manual
+sh -c 'echo "auto lo
+iface lo inet loopback
+
+iface ens32 inet manual
 
 auto vmbr0
 iface vmbr0 inet dhcp
-        bridge-ports none
+        bridge-ports ens32
         bridge-stp off
         bridge-fd 0
         bridge-maxwait 0
@@ -41,7 +44,8 @@ iface vmbr1 inet static
         post-up   echo 1 > /proc/sys/net/ipv4/ip_forward
         post-up   iptables -t nat -A POSTROUTING -s '10.20.30.0/24' -o vmbr0 -j MASQUERADE
         post-down iptables -t nat -D POSTROUTING -s '10.20.30.0/24' -o vmbr0 -j MASQUERADE
-" > /etc/network/interfaces'
+
+source /etc/network/interfaces.d/*" > /etc/network/interfaces'
 
 clear
 
