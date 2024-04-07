@@ -14,6 +14,7 @@ function check_internet() {
 }
 check_internet
 
+clear
 
 echo -e '\e[1;92m\nStart installation.\e[0m'
 sleep 2
