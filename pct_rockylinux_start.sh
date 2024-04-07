@@ -8,12 +8,16 @@ function check_internet() {
   wget -q --spider http://github.com
   if [ $? -eq 0 ]; then
     echo -e '\e[0;92mOnline. Continuing.\e[0m'
+    sleep 2
   else
     echo -e '\e[0;91mOffline. Go connect to the internet then run the script again.\e[0m'
+    sleep 2
   fi
 }
 
 check_internet
+
+clear
 
 # Container Settings
 ID="103"
