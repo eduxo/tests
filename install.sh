@@ -130,7 +130,6 @@ echo -e '\e[0;92m\nCleaning ...\e[0m'
 sleep 2
 apt-get autoremove -y
 history -c
-unset DEBIAN_FRONTEND
 
 echo -e '\n\e[1;92m\nInstallation is completed, restarting PC!\e[0m'
 sleep 3
