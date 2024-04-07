@@ -57,8 +57,6 @@ apt-get install gnome-core -y
 apt-get install sudo -y
 usermod -aG sudo sysadmin
 
-# Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb) - NEFUNGUJE
-
 # Install Wireshark
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 apt-get install -y wireshark
