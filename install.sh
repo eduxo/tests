@@ -20,7 +20,7 @@ sleep 2
 apt-get update -y
 apt-get dist-upgrade -y
 
-sh -c 'echo "iface eth0 inet manual
+sh -c 'echo "iface ens32 inet manual
 
 auto vmbr0
 iface vmbr0 inet dhcp
@@ -58,10 +58,6 @@ apt-get install sudo -y
 usermod -aG sudo sysadmin
 
 # Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb) - NEFUNGUJE
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1vj_lEcH3KKmnsWsVCNaAa-0endJOr6Aq' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1vj_lEcH3KKmnsWsVCNaAa-0endJOr6Aq" -O CiscoPacketTracer_821_Ubuntu_64bit.deb && rm -rf /tmp/cookies.txt
-echo "PacketTracer PacketTracer_821_amd64/accept-eula select true" |  debconf-set-selections
-DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_821_Ubuntu_64bit.deb
-rm CiscoPacketTracer_821_Ubuntu_64bit.deb
 
 # Install Wireshark
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
