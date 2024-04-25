@@ -25,6 +25,11 @@ HOSTNAME="rocky"
 IPv4="10.20.30.103"
 TEMPLATE="rockylinux-9-default_20221109_amd64.tar.xz"
 
+if [ ! -f "/var/lib/vz/template/cache/$TEMPLATE" ]; then
+  sudo pveam update
+  sudo pveam download local $TEMPLATE
+fi
+
 # Create Container
 echo -e '\e[0;92m\nDeploying container '$HOSTNAME' ...\e[0m\n'
 sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \

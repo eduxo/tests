@@ -1,5 +1,6 @@
 #!/bin/bash
-# This script prepare container ubuntu:lts for exercise IntraWeb
+# This script prepare container debian:12 for exercise
+# https://pve.proxmox.com/pve-docs/pct.1.html
 
 # Test internet connection
 function check_internet() {
@@ -14,27 +15,32 @@ function check_internet() {
 
 check_internet
 
-# ------------------------------------ InraWeb -------------------------------------------
 # Container Settings
-ID="101"
+ID="120"
 HOSTNAME="intraweb"
-IPv4="10.20.30.101"
-TEMPLATE="ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
+IPv4="10.20.30.120"
+TEMPLATE="rockylinux-9-default_20221109_amd64.tar.xz"
+
+if [ ! -f "/var/lib/vz/template/cache/$TEMPLATE" ]; then
+  sudo pveam update
+  sudo pveam download local $TEMPLATE
+fi
 
 # Create Container
 echo -e '\e[0;92m\nDeploying container '$HOSTNAME' ...\e[0m\n'
 sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
-    -arch amd64 \
-    -ostype ubuntu \
-    -hostname $HOSTNAME \
-    -features nesting=1 \
-    -unprivileged 1 \
-    -rootfs volume=local-lvm:8 \
-    -cores 1 \
-    -memory 512 \
-    -swap 512 \
-    -net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4/24,firewall=1 \
-    -nameserver 1.1.1.1 &&\
+    --arch amd64 \
+    --ostype centos \
+    --hostname $HOSTNAME \
+    --features nesting=1 \
+    --unprivileged 1 \
+    --onboot 1 \
+    --rootfs volume=local-lvm:8 \
+    --cores 1 \
+    --memory 512 \
+    --swap 512 \
+    --net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4/24,firewall=1 \
+    --nameserver 1.1.1.1 &&\
 
 # Start Container
 sudo pct start $ID &&\
@@ -42,21 +48,21 @@ echo -e '\e[0;92m\nWait about 30s for completion!\e[0m\n'
 sleep 10 &&\
 
 # Install sudo 
-sudo pct exec $ID -- apt update -y
-sudo pct exec $ID -- apt install sudo -y
+#sudo pct exec $ID -- dnf update -y
+sudo pct exec $ID -- dnf install openssh-server nano -y
+sudo pct exec $ID -- systemctl restart sshd
 
 # Add user to container
-sudo pct exec $ID -- groupadd sysadmin
-sudo pct exec $ID -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
+sudo pct exec $ID -- useradd sysadmin
+sudo pct exec $ID -- usermod -a -G wheel sysadmin
 sudo pct exec $ID -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
-sudo pct exec $ID -- usermod -aG users sysadmin
 sudo pct exec $ID -- setcap cap_net_raw+p /bin/ping
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
 # Install NGINX
-sudo pct exec $ID -- apt-get update
-sudo pct exec $ID -- apt-get install nginx -y
+sudo pct exec $ID -- dnf update -y
+sudo pct exec $ID -- dnf install nginx -y
 
 sudo pct exec $ID -- sh -c 'echo "
 <!doctype html>
