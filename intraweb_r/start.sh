@@ -84,7 +84,7 @@ sudo pct exec $ID -- sh -c 'echo "
     </p>
   </body>
 </html>
-" > /var/www/html/index.html'
+" > /usr/share/nginx/html/index.html'
 
 # --------------------------------SETTINGS FOR EXERCISES---------------------------------------
 
