@@ -37,8 +37,8 @@ sudo pct create "$ID" /var/lib/vz/template/cache/$TEMPLATE \
     --onboot 1 \
     --rootfs volume=local-lvm:8 \
     --cores 1 \
-    --memory 512 \
-    --swap 512 \
+    --memory 1024 \
+    --swap 1024 \
     --net0 name=eth0,bridge=vmbr1,gw=10.20.30.1,ip=$IPv4/24,firewall=1 \
     --nameserver 1.1.1.1 &&\
 
