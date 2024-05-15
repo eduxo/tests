@@ -72,23 +72,6 @@ sleep 3
 
 clear
 
-# GIT clone
-cd $HOME/ && git clone https://github.com/eduxo/cviceni.git
-
-# Update GIT cviceni on login
-sh -c 'echo "
-VPS-LabX Cviceni
-cd $HOME/cviceni/ && git pull
-" >> $HOME/.profile'
-
-# Update GIT VPS-LabX on login via rdp
-#sh -c 'echo "
-
-# VPS-LabX
-#cd $HOME/VPS-LabX/ && git pull > /dev/null 2>&1
-#" >> /etc/xrdp/startwm.sh'
-
-
 # Install Docker (https://docs.docker.com/engine/install/debian/)
 echo -e '\e[0;92m\nInstalling Docker, wait for completion.\e[0m'
 sleep 2
@@ -144,3 +127,12 @@ reboot
 # ================
 # Set Background
 # Set Homepage (www.eduxo.cz)
+
+# GIT clone
+#git clone https://github.com/eduxo/cviceni.git
+
+# Update GIT cviceni on login
+#echo "
+#VPS-LabX Cviceni
+#cd $HOME/cviceni/ && git pull
+#" >> $HOME/.profile
