@@ -84,7 +84,7 @@ sudo pct exec $ID -- sh -c 'echo "
     </p>
   </body>
 </html>
-" > /usr/share/nginx/html/index.html'
+" > /usr/share/testpage/index.html'
 
 sudo pct exec $ID -- systemctl enable nginx --now
 
